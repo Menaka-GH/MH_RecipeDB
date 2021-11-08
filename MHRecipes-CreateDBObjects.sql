@@ -70,4 +70,10 @@ CREATE TABLE Comments
    
   GO
 
- 
+ ---indexes
+CREATE NONCLUSTERED INDEX IX_RecipeName ON Recipes (recipe_name DESC)
+GO
+
+
+CREATE NONCLUSTERED INDEX IX_CategoryName ON Recipe_Category (category_name DESC)
+GO
