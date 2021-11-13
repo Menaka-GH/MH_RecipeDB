@@ -26,3 +26,45 @@ INSERT INTO Recipes values('Upma Recipe','Upma recipe is made with wheat rawa, v
 INSERT INTO Recipes values('Pudina Chutney','Pudina chutney made with pudina leaves, garlic, chillies, tomatoes and grind together',6);
 INSERT INTO Recipes values('Coconut Chutney','Coconut chutney made with coconuts, ginger, garlic, putna dal and grind together',6);
 INSERT INTO Recipes values('Tomato Chutney','Tomatoes and onions, galic, curry leaves',6);
+
+
+---sample data for Recipe_steps
+INSERT INTO Recipe_steps values(1,'Method: 1.wash the rice and moong dal three times and add the water in the ratio of 1:3.
+											2. cook them in the pressure cooker for 3 to 4 whistles.
+											3. Once whistle releases, mash the rice and dal.
+											4. Prepare the jaggery syrup with water and strain them
+											5. mix jaggery syrup and mashed rice,dal.
+											6. Fry cashews and dry nuts in the ghee and add to the rice.
+											7. add Elaichi powder and mix with ladle and serve them.',60,30);
+INSERT INTO Recipe_steps values(2,'Method: 1.wash the toor dal three times and add the water in the ratio of 1:2.
+											2. cook them in the pressure cooker for 3 to 4 whistles.
+											3. Once whistle releases, mash the dal.
+										    4. Cut the veggies by 1 inch shape.
+											5. In a pan, add oil,mustard,uraddal and add onions, fry them.
+											6. Add tomatoes and fry until cooked, then add the veggies.
+											7. Add the masala and salt, water.
+											8. Let them cook until the veggies cook, add tamarind juice and dal
+											9. add chopped coriander leaves.',45,30);
+
+INSERT INTO Incredients values('Mustard');
+INSERT INTO Incredients values('Jeera');
+INSERT INTO Incredients values('Urad dal');
+INSERT INTO Incredients values('Jeera powder');
+INSERT INTO Incredients values('Coriander powder');
+
+INSERT INTO Incredients values('Sambar powder');
+INSERT INTO Incredients values('Fenugreek seeds');
+
+---inserting data for the table Recipe_Incredients
+INSERT INTO Recipe_Incredients values(1,2, '1 teaspoon');
+INSERT INTO Recipe_Incredients values(7,2, '1/2 teaspoon');
+INSERT INTO Recipe_Incredients values(6,2, '1 tablespoon');
+---Users table
+INSERT INTO Users values('joe456@gmail.com');
+INSERT INTO Users values('a34gh@gmail.com');
+INSERT INTO Users values('kkss222@gmail.com');
+---Comments table
+
+INSERT INTO Comments values(1,2, 'Nice','2/2/2020');
+INSERT INTO Comments values(2,2, 'Very good','12/20/2020');
+INSERT INTO Comments values(3,1, 'Nice','6/20/2021');

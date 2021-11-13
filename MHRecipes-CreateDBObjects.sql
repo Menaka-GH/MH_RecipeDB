@@ -71,9 +71,90 @@ CREATE TABLE Comments
   GO
 
  ---indexes
+
 CREATE NONCLUSTERED INDEX IX_RecipeName ON Recipes (recipe_name DESC)
 GO
 
 
 CREATE NONCLUSTERED INDEX IX_CategoryName ON Recipe_Category (category_name DESC)
+GO
+--stored procedure
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE SPECIFIC_NAME = N'ReadRecipeCategories' AND ROUTINE_TYPE = N'PROCEDURE')
+DROP PROCEDURE ReadRecipeCategories
+GO
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE SPECIFIC_NAME = N'DeleteRecipe' AND ROUTINE_TYPE = N'PROCEDURE')
+DROP PROCEDURE DeleteRecipe
+GO
+IF EXISTS ( SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE SPECIFIC_NAME = N'UpdateRecipe' AND ROUTINE_TYPE = N'PROCEDURE')
+DROP PROCEDURE UpdateRecipe
+GO
+--stored procedure: ReadRecipeCategories
+CREATE PROCEDURE ReadRecipeCategories(@rname as varchar(255))
+AS 
+BEGIN
+SET NOCOUNT ON;
+SELECT R.recipe_name,RC.category_name 
+FROM Recipes AS R
+INNER JOIN Recipe_Category RC ON R.recipe_category_id = RC.recipe_category_id
+where R.recipe_name like '%'+ @rname
+END;
+
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE SPECIFIC_NAME = N'CreateRecipeCategory' AND ROUTINE_TYPE = N'PROCEDURE')
+DROP PROCEDURE CreateRecipeCategory
+GO
+CREATE PROCEDURE CreateRecipeCategory @RecipeName VARCHAR(255), @CategoryName VARCHAR(255),
+@RecipeDescription varchar(255) = NULL 
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRY
+    IF((@RecipeName IS NULL OR @CategoryName IS NULL) OR (@RecipeName = '' OR @CategoryName = ''))
+    BEGIN
+        RAISERROR('@RecipeName and @CategoryName cannot be null or empty',18,0)
+    END
+    ELSE
+    BEGIN
+        DECLARE @RecipeCount INT = (SELECT COUNT(1) FROM Recipes WHERE recipe_name = @RecipeName)
+        DECLARE @RecipeId INT
+        IF(@RecipeCount = 0)
+        BEGIN
+            INSERT INTO Recipes VALUES (@RecipeName)
+            SET @RecipeId = (SELECT scope_identity())
+        END
+        ELSE
+        BEGIN
+           SET @RecipeId = (SELECT Recipes.recipe_id FROM Recipes WHERE Recipes.recipe_name = @RecipeName)
+        END
+        INSERT INTO Recipe_Category VALUES (@RecipeId, @CategoryName)
+    END
+    END TRY
+    BEGIN CATCH
+        DECLARE @ErrorMessage NVARCHAR(4000), @ErrorSeverity INT, @ErrorState INT;
+        SELECT @ErrorMessage = ERROR_MESSAGE(), @ErrorSeverity = ERROR_SEVERITY(), @ErrorState = ERROR_STATE();
+        RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState );
+    END CATCH
+
+END
+GO
+------------------------------------------------
+--delete stored procedure
+CREATE PROCEDURE DeleteRecipe @RecipeName NVARCHAR(255) AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE @RecipeId INT = (SELECT Recipes.recipe_id FROM Recipes WHERE recipe_name = @RecipeName)
+    DELETE FROM Recipe_Incredients WHERE Recipe_Incredients.recipe_id = @RecipeId;
+    DELETE FROM Recipes WHERE Recipes.recipe_id = @RecipeId;
+	DELETE FROM Recipe_steps WHERE Recipe_steps.recipe_id = @RecipeId;
+	DELETE FROM Comments WHERE Comments.recipe_id = @RecipeId;
+
+
+END
+GO
+
+---updaterecipe
+CREATE PROCEDURE UpdateRecipe @OldRecipeName NVARCHAR(255), @NewRecipeName NVARCHAR(255) AS
+BEGIN
+    SET NOCOUNT ON;
+    UPDATE Recipes SET Recipes.recipe_name = @NewRecipeName WHERE Recipes.recipe_name = @OldRecipeName
+END
 GO
