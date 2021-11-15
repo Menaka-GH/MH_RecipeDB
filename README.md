@@ -18,11 +18,16 @@ Features
 
 User Instructions
 					
-List all recipes		
+List all recipes	
+	
 List all recipes by category		
+
 List recipes by ingredient	
+
 Add recipes to the collection	
+
 Remove recipe from collection		
+
 Delete recipe from collection	
 
 
