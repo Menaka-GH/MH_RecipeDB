@@ -184,3 +184,37 @@ RETURN
     ON c.recipe_id=r.recipE_id  
 	WHERE posted_date = @PostedDate;
 GO
+
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE SPECIFIC_NAME = N'ReadRecipes' AND ROUTINE_TYPE = N'PROCEDURE')
+DROP PROCEDURE ReadRecipes
+GO
+CREATE PROCEDURE ReadRecipes
+AS
+BEGIN
+	SELECT	*
+FROM
+	Recipes 
+END;
+GO
+---Lists recipes by category
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE SPECIFIC_NAME = N'ListRecipeCategory' AND ROUTINE_TYPE = N'PROCEDURE')
+DROP PROCEDURE ListRecipeCategory
+GO
+CREATE OR ALTER PROCEDURE ListRecipeCategory AS
+BEGIN
+	SELECT	r.recipe_name,rc.category_name
+FROM
+	Recipes r
+INNER JOIN Recipe_Category rc ON r.recipe_category_id = rc.recipe_category_id
+
+ORDER BY
+	r.recipe_name
+END;
+GO
+
+SELECT r.recipe_name,rc.category_name,i.incredient_name,ri.amount_required
+FROM Recipe_Category rc
+INNER JOIN Recipes r ON rc.recipe_category_id = r.recipe_category_id
+INNER JOIN Recipe_Incredients ri ON r.recipe_id = ri.recipe_id
+INNER JOIN Incredients i ON ri.incredient_id = i.incredient_id;
+		

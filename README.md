@@ -18,9 +18,9 @@ Features
 
 User Instructions
 					
-List all recipes	
+List all recipes - EXEC ListRecipes	
 	
-List all recipes by category		
+List all recipes by category - EXEC ListRecipeCategory		
 
 List recipes by ingredient	
 
@@ -34,8 +34,11 @@ Delete recipe from collection
 Technical Instructions
 
 •	Requires MS SQL Server.
+
 •	Execute the MHRecipes-CreateDBObjects.sql script to create the database objects.
+
 •	Execute the MHRecipes-LoadSampleData.sqlscript to load the sample data.
+
 •	The ExecuteRecipes.sql file has example commands showing how to use the stored procedures.
 
 Project Requirements

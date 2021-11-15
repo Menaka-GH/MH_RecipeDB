@@ -16,3 +16,7 @@ EXEC NumberOfCategories;
 
 --To get the comments on recipes by date
 select * from CommentsOnPDate('11/10/2020');
+--To list the recipes
+EXECUTE ReadRecipes;
+--To list the recipes and category
+EXEC ListRecipeCategory
