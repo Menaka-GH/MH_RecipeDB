@@ -13,3 +13,6 @@ SELECT @IncredId Incredients_Id
 SELECT dbo.NumberOfUsers(1); 
 ---TO GET THE NUMBER OF CATEGORIES
 EXEC NumberOfCategories;
+
+--To get the comments on recipes by date
+select * from CommentsOnPDate('11/10/2020');

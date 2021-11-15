@@ -169,3 +169,18 @@ BEGIN
 	WHERE recipe_id = @RecipeID);
 END;
 GO
+--Table valued function
+CREATE FUNCTION CommentsOnPDate (
+    @PostedDate Date) 
+RETURNS TABLE
+AS
+RETURN
+    SELECT 
+        c.userid,
+		r.recipe_name,
+        c.comment        
+    FROM
+        Comments c join Recipes r
+    ON c.recipe_id=r.recipE_id  
+	WHERE posted_date = @PostedDate;
+GO
