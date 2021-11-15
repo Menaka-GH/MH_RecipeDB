@@ -1,15 +1,21 @@
 Recipe Database
+
 Introduction
-This repository is an example project for the Code Louisville Fall 2021 SQL course. The purpose of this code is to demonstrate the use of SQL and Git.
+	
+	This repository is an example project for the Code Louisville Fall 2021 SQL course. The purpose of this code is to demonstrate the use of SQL and Git.
+
 Project Description
-This is a recipe database for the tracking the recipe names, categories, steps to prepare the recipes and so on.  
+
+	This is a recipe database for the tracking the recipe names, categories, steps to prepare the recipes and so on.  
 Stored procedures are included to insert, update, and delete the recipes which are in the database.  
+
 Features
-App Features
+
 1. Maintain lists of recipes, recipe description and categories.
 2. Add new recipes to the recipe collection
 3. Updating the recipes which are in the database.
 4. Tracking the users with their name and email.
+
 User Instructions
 					
 List all recipes		
