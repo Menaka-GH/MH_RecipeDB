@@ -50,6 +50,9 @@ select *from Recipe_Category order by category_name;
 --To list the recipes
 select *from Recipes;
 
+--To list the recipes with the preferred cooktime
+select *from Recipe_steps where cook_time =30 or cook_time = 60;
+
 SELECT r.recipe_name,rc.category_name,i.incredient_name,ri.amount_required
 FROM Recipe_Category rc
 INNER JOIN Recipes r ON rc.recipe_category_id = r.recipe_category_id
