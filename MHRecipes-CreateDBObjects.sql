@@ -239,9 +239,7 @@ ORDER BY
 END;
 GO
 
-SELECT r.recipe_name,rc.category_name,i.incredient_name,ri.amount_required
-FROM Recipe_Category rc
-INNER JOIN Recipes r ON rc.recipe_category_id = r.recipe_category_id
-INNER JOIN Recipe_Incredients ri ON r.recipe_id = ri.recipe_id
-INNER JOIN Incredients i ON ri.incredient_id = i.incredient_id;
+
+
+
 		

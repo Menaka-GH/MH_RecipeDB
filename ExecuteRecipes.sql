@@ -42,7 +42,17 @@ EXECUTE DeleteRecipe 'Bajji';
 
 --To list the recipes and category
 
-EXEC ListRecipeCategory
+EXEC ListRecipeCategory;
 
-select *from Recipe_Category;
+--To list the recipe categories orderly
+select *from Recipe_Category order by category_name;
+
+--To list the recipes
 select *from Recipes;
+
+SELECT r.recipe_name,rc.category_name,i.incredient_name,ri.amount_required
+FROM Recipe_Category rc
+INNER JOIN Recipes r ON rc.recipe_category_id = r.recipe_category_id
+INNER JOIN Recipe_Incredients ri ON r.recipe_id = ri.recipe_id
+INNER JOIN Incredients i ON ri.incredient_id = i.incredient_id
+ORDER BY r.recipe_name;

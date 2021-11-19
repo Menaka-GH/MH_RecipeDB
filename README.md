@@ -46,8 +46,11 @@ Project Requirements
 Group 1: Reading Data from a Database
 
 •	Write a SELECT query that uses a WHERE clause.
+
 •	Write a SELECT query that uses an OR and an AND operator.
+
 •	Write a SELECT query that filters NULL rows using IS NOT NULL.
+
 •	Write a SELECT query that utilizes a JOIN.
 •	Write a SELECT query that utilizes a JOIN with 3 or more tables.
 •	Write a SELECT query that utilizes a LEFT JOIN.
