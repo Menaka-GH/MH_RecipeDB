@@ -22,13 +22,11 @@ List all recipes - EXEC ListRecipes
 	
 List all recipes by category - EXEC ListRecipeCategory		
 
-List recipes by ingredient	
+List recipes by ingredient-select *from Incredients;	
 
-Add recipes to the collection	
 
-Remove recipe from collection		
-
-Delete recipe from collection	
+Delete recipe from collection-EXECUTE DeleteRecipe 'Bajji';
+		
 
 
 Technical Instructions
